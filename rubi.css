@@ -6,6 +6,9 @@ body {
     background-size: 100% auto;
 
 }
+a{
+    color: #f1f1f1
+}
 div.container4 {
     height: 10em;
     position: relative }
