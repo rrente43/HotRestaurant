@@ -6,7 +6,7 @@ var PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// waiting list
+// waiting list (sample data with 3 entries)
 
 var reservation = [
     {
@@ -32,44 +32,43 @@ var reservation = [
     },
 ];
 
+// create an array for overflow reservations called waitinglist
 var waitinglist = [];
 
+
+// setup the routing for the website, to respond with html pages for end user pages, and return api calls for backend stuff.
+
+//Public home page route
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
+// Public reservations page
 app.get("/reserve", function (req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+// Public page showing all current reservations, including making everyones email and phone numbers public.. OOPS!
 app.get("/tables", function (req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
 });
 
-// Displays all characters
+//API's!!!!!!
+
+// API call .. this returns the array with all waitlist customers (array named "waitinglist")
 app.get("/api/waitinglist", function (req, res) {
     return res.json(waitinglist);
 });
 
+// API call to ask for all active reservations (5 reserved tables), does not include waitlist array
 app.get("/api/reservation", function (req, res) {
     return res.json(reservation);
 });
-// Displays a single character, or returns false
-app.get("/api/waitinglist/:name", function (req, res) {
-    var chosen = req.params.waitinglist;
 
-    console.log(chosen);
 
-    for (var i = 0; i < waitinglist.length; i++) {
-        if (chosen === waitinglist[i].routeName) {
-            return res.json(waitinglist[i]);
-        }
-    }
 
-    return res.json(false);
-});
-
-// Create New Characters - takes in JSON input
+// Create New Reservations - this call takes in JSON input and adds it to  reservations array,
+//  or if it is full (has array length >= 5) then adds to waitlist array
 app.post("/api/reservation", function (req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
