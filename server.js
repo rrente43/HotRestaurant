@@ -2,7 +2,12 @@ var express = require("express");
 var path = require("path");
 
 var app = express();
+<<<<<<< HEAD
 var PORT = process.env.PORT || 3000;
+=======
+var PORT = 3000;
+// app.use(express.static("public"));
+>>>>>>> e0e194f172ffae89506e5590a877c94da3f9e722
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
