@@ -22,11 +22,11 @@
             <h2 class="text-center">Make your reservation</h2>
             <br>
             <div class="text-center">
-              <a href="./tables.html">
+              <a href="/tables">
                 <button class="btn btn-lg btn-primary">
                   <span class="fa fa-list-alt"></span> View Tables</button>
               </a>
-              <a href="./index.html">
+              <a href="/">
                 <button class="btn btn-lg btn-default">
                   <span class="fa fa-home"></span>
                 </button>
@@ -69,8 +69,8 @@
           <footer class="footer">
             <div class="container">
               <p>
-                <a href="/api/tables">API Table Link</a> |
-                <a href="/api/waitlist">API Wait List</a>
+                <a href="/api/reservation">API Table Link</a> |
+                <a href="/api/waitinglist">API Wait List</a>
             </p></div>
           </footer>
       
@@ -92,10 +92,10 @@
       
           // Here we grab the form elements
           var newReservation = {
-            customerName: $("#reserve-name").val().trim(),
+            name: $("#reserve-name").val().trim(),
             phoneNumber: $("#reserve-phone").val().trim(),
-            customerEmail: $("#reserve-email").val().trim(),
-            customerID: $("#reserve-unique-id").val().trim()
+            email: $("#reserve-email").val().trim(),
+            uniqueID: $("#reserve-unique-id").val().trim()
           };
       
           console.log(newReservation);
